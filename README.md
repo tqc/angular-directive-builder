@@ -32,6 +32,6 @@ See https://github.com/tqc/ChondricJS/blob/master/es6/core.js for details.
 
 For use in standalone angular apps, the source file is compiled into a regular ES5 angular module.
 
-See https://github.com/tqc/slider for an example.
+See https://github.com/tqc/tc-slider for an example.
 
 
