@@ -2,7 +2,7 @@
   "author": "Tom Clarkson ",
   "name": "angular-directive-builder",
   "description": "Tools for building angular directives as es6 modules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "url": "http://github.com/tqc/directive-builder"
   },

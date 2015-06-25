@@ -1,6 +1,6 @@
 var fs = require("fs");
 var vm = require('vm');
-
+var path = require('path');
 var util = require('util');
 
 var traceur = require("traceur");
@@ -35,9 +35,12 @@ exports.build = function(options) {
     vm.runInContext(output, sandbox);
 
 
-    var directiveCode = "angular.module(\"" + options.moduleName + "\", " + JSON.stringify(options.dependencies || []) + ").directive(" + JSON.stringify(options.moduleName) + ", " + JSON.stringify(sandbox.directiveOptions.injections || []) + ".concat([" + sandbox.directiveOptions.fn.toString() + "]))";
+    var directiveCode = "angular.module(\"" + options.moduleName + "\", " + JSON.stringify(options.dependencies || []) + ").directive(" + JSON.stringify(sandbox.directiveOptions.name || options.moduleName) + ", " + JSON.stringify(sandbox.directiveOptions.injections || []) + ".concat([" + sandbox.directiveOptions.fn.toString() + "]))";
 
-    directiveCode = directiveCode.replace("require(\"./template.html\")", JSON.stringify(fs.readFileSync("src/template.html", "utf8")));
+    if (directiveCode.indexOf("require(\"./template.html\")") >= 0) {
+        var templateContent = JSON.stringify(fs.readFileSync("src/template.html", "utf8"));
+        directiveCode = directiveCode.replace("require(\"./template.html\")", templateContent);
+    }
 
     fs.writeFileSync("dist/" + options.moduleName + ".js", directiveCode);
 
@@ -61,9 +64,13 @@ exports.build = function(options) {
         console.log("Done sass build with code " + code);
     });
 
-    var scss = fs.readFileSync(__dirname+ "/env.scss", "utf8");
-    scss+="\n";
-    scss+="@import \""+process.cwd()+"/src/index.scss\""
+    var scss = "";
+    if (fs.existsSync(path.join(process.cwd(), "/node_modules/bourbon"))) {
+        scss += '@import "./node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";\n';
+    }
+    scss += fs.readFileSync(path.join(__dirname, "env.scss"), "utf8");
+    scss += "\n";
+    scss += "@import \"" + process.cwd().replace(/\\/g, "/") + "/src/index.scss\"";
     p.stdin.write(scss);
     p.stdin.end();
 
