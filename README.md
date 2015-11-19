@@ -1,5 +1,7 @@
 # Angular Directive Builder
 
+[ ![Codeship Status for tqc/angular-directive-builder](https://codeship.com/projects/79fc41e0-1b30-0133-90d0-7e346f2e432c/status?branch=master)](https://codeship.com/projects/94441)
+
 Tools for building angular directives as es6 modules
 
 ## Install

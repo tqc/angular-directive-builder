@@ -1,7 +1,6 @@
 var fs = require("fs");
 var vm = require('vm');
 var path = require('path');
-var util = require('util');
 
 var traceur = require("traceur");
 
@@ -12,10 +11,10 @@ exports.build = function(options, callback) {
 
     // find the entry point
     var src = fs.readFileSync("src/index.js", "utf8");
-    var sourceFile = new traceur.syntax.SourceFile('inline-script', src);
+    //var sourceFile = new traceur.syntax.SourceFile('inline-script', src);
 
-    var parser = new traceur.syntax.Parser(sourceFile);
-    var tree = parser.parseModule(true);
+    //var parser = new traceur.syntax.Parser(sourceFile);
+    //var tree = parser.parseModule(true);
 
 
     var Compiler = traceur.Compiler;
