@@ -2,13 +2,12 @@
     "author": "Tom Clarkson ",
     "name": "angular-directive-builder",
     "description": "Tools for building angular directives as es6 modules",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "repository": {
         "url": "http://github.com/tqc/directive-builder"
     },
     "scripts": {
-        "test": "eslint . && mocha",
-        "posttest": "publish"
+        "test": "eslint . && mocha"
     },
     "main": "./index.js",
     "dependencies": {
@@ -17,7 +16,6 @@
     "devDependencies": {
         "eslint": "^1.0.0",
         "babel-eslint": "*",
-        "publish": "^0.5.0",
         "chai": "*",
         "mocha": "*"
     },
