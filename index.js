@@ -6,7 +6,7 @@ var util = require('util');
 var traceur = require("traceur");
 
 
-exports.build = function(options) {
+exports.build = function(options, callback) {
 
     if (!fs.existsSync("dist")) fs.mkdirSync("dist");
 
@@ -73,6 +73,5 @@ exports.build = function(options) {
     scss += "@import \"" + process.cwd().replace(/\\/g, "/") + "/src/index.scss\"";
     p.stdin.write(scss);
     p.stdin.end();
-
-
+    if (callback) callback();
 };
